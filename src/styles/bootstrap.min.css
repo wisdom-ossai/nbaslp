@@ -47,9 +47,10 @@
     scroll-behavior: smooth;
   }
 }
+
 body {
   margin: 0;
-  font-family: "Rubik", sans-serif;
+  font-family: "Open Sans", Inter, sans-serif;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
@@ -57,6 +58,7 @@ body {
   background-color: #fff;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  min-width: 624px;
 }
 hr {
   margin: 1rem 0;
@@ -82,7 +84,7 @@ h6,
 .h6 {
   margin-top: 0;
   margin-bottom: 0.5rem;
-  font-family: "Nunito", sans-serif;
+  font-family: "Open Sans", Inter, sans-serif;
   font-weight: 500;
   line-height: 1.2;
   color: #091e3e;
@@ -5161,7 +5163,7 @@ fieldset:disabled .btn {
   z-index: 1080;
   display: block;
   margin: 0;
-  font-family: "Rubik", sans-serif;
+  font-family: "Open Sans", Inter, sans-serif;
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
@@ -5269,7 +5271,7 @@ fieldset:disabled .btn {
   z-index: 1070;
   display: block;
   max-width: 276px;
-  font-family: "Rubik", sans-serif;
+  font-family: "Open Sans", Inter, sans-serif;
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;

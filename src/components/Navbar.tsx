@@ -1,13 +1,125 @@
+import Link from "next/link";
+import { useRouter } from "next/router";
 import React from "react";
 
+const NAV_ITEMS = [
+  {
+    slug: "home",
+    label: "Home",
+    url: "/",
+  },
+  {
+    slug: "about",
+    label: "About",
+    url: "#",
+    children: [
+      {
+        slug: "about-spl",
+        label: "About NBA SPL",
+        url: "/about/spl",
+      },
+      {
+        slug: "partnership",
+        label: "Partnership",
+        url: "/about/partnership",
+      },
+      {
+        slug: "persidency",
+        label: "Chairman",
+        url: "/about/presidency",
+      },
+      {
+        slug: "committees",
+        label: "Committees",
+        url: "/about/committees",
+      },
+    ],
+  },
+  {
+    slug: "events",
+    label: "Events",
+    url: "/events",
+  },
+  {
+    slug: "events",
+    label: "Events",
+    url: "/events",
+  },
+  {
+    slug: "news-resources",
+    label: "News & Resources",
+    url: "#",
+    children: [
+      {
+        slug: "news-resources-news",
+        label: "News",
+        url: "/news-resources/news",
+      },
+      {
+        slug: "news-resources-gallery",
+        label: "Media Gallery",
+        url: "/news-resources/gallery",
+      },
+      {
+        slug: "news-resources-blog",
+        label: "Blog",
+        url: "/news-resources/blog",
+      },
+      {
+        slug: "trainings",
+        label: "Trainings",
+        url: "/news-resources/trainings",
+      },
+    ],
+  },
+  {
+    slug: "membership",
+    label: "Membership",
+    url: "#",
+    children: [
+      {
+        slug: "membership-news",
+        label: "Become a Member",
+        url: "/membership/become-a-member",
+      },
+      {
+        slug: "membership-directory",
+        label: "Membership Directory",
+        url: "/membership/directory",
+      },
+    ],
+  },
+  {
+    slug: "contact-us",
+    label: "Contact Us",
+    url: "/contact-us",
+  },
+];
+
 const Navbar = () => {
+  const router = useRouter();
   return (
     <div className="container-fluid position-relative p-0">
       <nav className="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0">
         <a href="index.html" className="navbar-brand p-0">
-          <h1 className="m-0">
-            <i className="fa fa-user-tie me-2"></i>Startup
-          </h1>
+          <h4 className="m-0 d-flex align-items-center">
+            <img
+              src="/assets/img/slp_3.png"
+              className="img-fluid"
+              width={45}
+              height={45}
+              alt="slp-logo"
+            />
+            &nbsp;{" "}
+            <div className="d-flex justify-content-center flex-column">
+              <span className="nba" style={{ fontSize: 10 }}>
+                NIGERIAN BAR ASSOCIATION <br />
+              </span>
+              <span className="spl" style={{ fontSize: 12 }}>
+                Section on Legal Practic - SPL
+              </span>
+            </div>
+          </h4>
         </a>
         <button
           className="navbar-toggler"
@@ -19,61 +131,47 @@ const Navbar = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarCollapse">
           <div className="navbar-nav ms-auto py-0">
-            <a href="index.html" className="nav-item nav-link">
-              Home
-            </a>
-            <a href="about.html" className="nav-item nav-link active">
-              About
-            </a>
-            <a href="service.html" className="nav-item nav-link">
-              Services
-            </a>
-            <div className="nav-item dropdown">
-              <a
-                href="#"
-                className="nav-link dropdown-toggle"
-                data-bs-toggle="dropdown"
-              >
-                Blog
-              </a>
-              <div className="dropdown-menu m-0">
-                <a href="blog.html" className="dropdown-item">
-                  Blog Grid
-                </a>
-                <a href="detail.html" className="dropdown-item">
-                  Blog Detail
-                </a>
-              </div>
-            </div>
-            <div className="nav-item dropdown">
-              <a
-                href="#"
-                className="nav-link dropdown-toggle"
-                data-bs-toggle="dropdown"
-              >
-                Pages
-              </a>
-              <div className="dropdown-menu m-0">
-                <a href="price.html" className="dropdown-item">
-                  Pricing Plan
-                </a>
-                <a href="feature.html" className="dropdown-item">
-                  Our features
-                </a>
-                <a href="team.html" className="dropdown-item">
-                  Team Members
-                </a>
-                <a href="testimonial.html" className="dropdown-item">
-                  Testimonial
-                </a>
-                <a href="quote.html" className="dropdown-item">
-                  Free Quote
-                </a>
-              </div>
-            </div>
-            <a href="contact.html" className="nav-item nav-link">
-              Contact
-            </a>
+            {NAV_ITEMS.map((item: any) =>
+              item.children ? (
+                <div key={item.slug} className="nav-item dropdown">
+                  <Link
+                    href="#"
+                    className={`nav-link dropdown-toggle ${
+                      router.pathname.includes(item.url) ? "active" : ""
+                    }`}
+                    data-bs-toggle="dropdown"
+                  >
+                    {item.label}
+                  </Link>
+                  <div
+                    className="dropdown-menu m-0"
+                    style={{ fontSize: "0.75rem" }}
+                  >
+                    {item.children.map((child: any) => (
+                      <Link
+                        key={child.slug}
+                        href={child.url}
+                        className={`dropdown-item ${
+                          router.pathname === child.url ? "active" : ""
+                        }`}
+                      >
+                        {child.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <Link
+                  key={item.slug}
+                  href={item.url}
+                  className={`nav-item nav-link ${
+                    router.pathname === item.url ? "active" : ""
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              )
+            )}
           </div>
           <button
             type="button"
@@ -87,7 +185,7 @@ const Navbar = () => {
             href="https://htmlcodex.com/startup-company-website-template"
             className="btn btn-primary py-2 px-4 ms-3"
           >
-            Download Pro Version
+            Sign In
           </a>
         </div>
       </nav>

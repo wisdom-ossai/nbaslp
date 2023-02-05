@@ -89,7 +89,7 @@ h6,
 
 /*** Button ***/
 .btn {
-  font-family: "Nunito", sans-serif;
+  font-family: "Open Sans", Inter, sans-serif;
   font-weight: 600;
   transition: 0.5s;
 }
@@ -133,13 +133,13 @@ h6,
 
 /*** Navbar ***/
 .navbar-dark .navbar-nav .nav-link {
-  font-family: "Nunito", sans-serif;
+  font-family: "Open Sans", Inter, sans-serif;
   position: relative;
   margin-left: 25px;
-  padding: 35px 0;
+  padding: 16px 0;
   color: #ffffff;
-  font-size: 18px;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 400;
   outline: none;
   transition: 0.5s;
 }
@@ -154,8 +154,12 @@ h6,
   color: var(--primary);
 }
 
-.navbar-dark .navbar-brand h1 {
-  color: #ffffff;
+.navbar-dark .navbar-brand h4 {
+  color: var(--p200);
+}
+
+.navbar-dark .navbar-brand h4 .spl {
+  color: #fff;
 }
 
 .navbar-dark .navbar-toggler {
@@ -176,8 +180,12 @@ h6,
     color: var(--dark);
   }
 
-  .navbar-dark .navbar-brand h1 {
+  .navbar-dark .navbar-brand h4 {
     color: var(--primary);
+  }
+
+  .navbar-dark .navbar-brand h4 .spl {
+    color: #000;
   }
 }
 
@@ -217,8 +225,14 @@ h6,
     display: none;
   }
 
-  .sticky-top.navbar-dark .navbar-brand h1 {
+  .sticky-top.navbar-dark .navbar-brand h4 {
+    display: flex;
+    align-items: center;
     color: var(--primary);
+  }
+
+  .sticky-top.navbar-dark .navbar-brand h4 .spl {
+    color: #000;
   }
 }
 
