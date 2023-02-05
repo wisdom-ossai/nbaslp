@@ -1,9 +1,21 @@
 /********** Template CSS **********/
 :root {
-  --primary: #06a3da;
-  --secondary: #34ad54;
-  --light: #eef9ff;
-  --dark: #091e3e;
+  --primary: #28a745;
+  --secondary: #287ea7;
+  --light: #dff9e4;
+  --dark: #1a4d27;
+  --p50: #f1fcf2;
+  --p100: #dff9e4;
+  --p200: #c1f1cb;
+  --p300: #90e5a3;
+  --p400: #58d073;
+  --p500: #32b550;
+  --p600: #28a745;
+  --p700: #1f7634;
+  --p800: #1e5d2d;
+  --p900: #1a4d27;
+  --transparent-dark: #08160cc7;
+  --dark-gray: #e3e3e3;
 }
 
 /*** Spinner ***/
@@ -175,7 +187,7 @@ h6,
     width: 100%;
     top: 0;
     left: 0;
-    border-bottom: 1px solid rgba(256, 256, 256, 0.1);
+    border-bottom: 1px solid var(--p50);
     z-index: 999;
   }
 
@@ -216,7 +228,7 @@ h6,
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(9, 30, 62, 0.7);
+  background: var(--transparent-dark);
   z-index: 1;
 }
 
@@ -382,7 +394,7 @@ h6,
   margin: 0 5px;
   width: 15px;
   height: 15px;
-  background: #dddddd;
+  background: var(--dark-gray);
   border-radius: 2px;
   transition: 0.5s;
 }
@@ -403,7 +415,7 @@ h6,
 
 .testimonial-carousel .owl-item.center .testimonial-item {
   background: #ffffff !important;
-  box-shadow: 0 0 30px #dddddd;
+  box-shadow: 0 0 30px var(--dark-gray);
 }
 
 /*** Team ***/
@@ -431,11 +443,11 @@ h6,
 }
 
 .team-item:hover {
-  box-shadow: 0 0 30px #dddddd;
+  box-shadow: 0 0 30px var(--dark-gray);
 }
 
 .team-item:hover .team-social {
-  background: rgba(9, 30, 62, 0.7);
+  background: var(--transparent-dark);
 }
 
 .team-item:hover .team-social a.btn:first-child {
@@ -490,7 +502,7 @@ h6,
 }
 
 .bg-header {
-  background: linear-gradient(rgba(9, 30, 62, 0.7), rgba(9, 30, 62, 0.7)),
+  background: linear-gradient(var(--transparent-dark), var(--transparent-dark)),
     url(/assets/img/carousel-1.jpg) center center no-repeat;
   background-size: cover;
 }

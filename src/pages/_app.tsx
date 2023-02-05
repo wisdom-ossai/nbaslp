@@ -5,6 +5,7 @@ import "@slp/styles/globals.css";
 import type { AppProps } from "next/app";
 import TopNav from "@slp/components/TopNav";
 import Navbar from "@slp/components/Navbar";
+import Footer from "@slp/components/Footer";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -12,6 +13,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <TopNav />
       <Navbar />
       <Component {...pageProps} />
+      <Footer />
     </>
   );
 }
