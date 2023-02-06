@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
+import SigninModal from "./SigninModal";
 
 const NAV_ITEMS = [
   {
@@ -14,31 +15,26 @@ const NAV_ITEMS = [
     url: "#",
     children: [
       {
-        slug: "about-spl",
+        slug: "about-slp",
         label: "About NBA SPL",
-        url: "/about/spl",
+        url: "/about/slp",
       },
       {
-        slug: "partnership",
+        slug: "about-partnership",
         label: "Partnership",
         url: "/about/partnership",
       },
       {
-        slug: "persidency",
+        slug: "about-persidency",
         label: "Chairman",
         url: "/about/presidency",
       },
       {
-        slug: "committees",
+        slug: "about-committees",
         label: "Committees",
         url: "/about/committees",
       },
     ],
-  },
-  {
-    slug: "events",
-    label: "Events",
-    url: "/events",
   },
   {
     slug: "events",
@@ -80,7 +76,7 @@ const NAV_ITEMS = [
       {
         slug: "membership-news",
         label: "Become a Member",
-        url: "/membership/become-a-member",
+        url: "/membership/signup",
       },
       {
         slug: "membership-directory",
@@ -181,12 +177,14 @@ const Navbar = () => {
           >
             <i className="fa fa-search"></i>
           </button>
-          <a
-            href="https://htmlcodex.com/startup-company-website-template"
+          <Link
+            href="/signin"
+            // data-bs-toggle="modal"
+            // data-bs-target="#login-modal"
             className="btn btn-primary py-2 px-4 ms-3"
           >
             Sign In
-          </a>
+          </Link>
         </div>
       </nav>
 
@@ -219,6 +217,8 @@ const Navbar = () => {
           </div>
         </div>
       </div>
+
+      <SigninModal />
     </div>
   );
 };

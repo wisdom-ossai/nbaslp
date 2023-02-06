@@ -1,0 +1,19 @@
+.signin {
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.signin .btn-google {
+  background-color: #ea4335;
+}
+
+.signin .btn-facebook {
+  background-color: #3b5998;
+}
+
+.signin .btn-facebook:hover,
+.signin .btn-google:hover {
+  opacity: 0.6;
+}

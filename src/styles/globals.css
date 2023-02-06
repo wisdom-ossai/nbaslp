@@ -498,6 +498,12 @@ h6,
   transform: scale(1.15);
 }
 
+input:focus,
+button:focus {
+  border: 1px solid var(--primary) !important;
+  box-shadow: none !important;
+}
+
 /*** Miscellaneous ***/
 @media (min-width: 991.98px) {
   .facts {
