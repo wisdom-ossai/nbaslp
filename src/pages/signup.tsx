@@ -4,29 +4,43 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import styles from "../styles/Signin.module.css";
 import Head from "next/head";
+import { useAuthContext } from "@slp/components/AuthContext/AuthContext";
 import { withPublic } from "@slp/configs/withAuth";
 
-const Signin = ({ auth }: any) => {
-  const { signIn, googleSignin } = auth;
+const Signup = ({ auth }: any) => {
+  const { signUp } = auth;
   const [loading, setLoading] = useState(false);
-  const [serverErrors, setServerError] = useState({ email: "", password: "" });
+  const [serverErrors, setServerError] = useState({
+    email: "",
+    password: "",
+    username: "",
+  });
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
+      confirmPassword: "",
+      username: "",
     },
     validationSchema: Yup.object({
       password: Yup.string()
         .min(8, "Must be 8 characters or more")
         .required("Password is required"),
+      confirmPassword: Yup.string()
+        .required("Password is required")
+        .oneOf([Yup.ref("password")], "Your passwords do not match."),
       email: Yup.string()
         .email("Invalid email address")
         .required("Email is required"),
+      username: Yup.string().required("Username is required"),
     }),
     onSubmit: async (values) => {
       setLoading(true);
-
-      const { result, error } = await signIn(values.email, values.password);
+      const { result, error } = await signUp(
+        values.email,
+        values.password,
+        values.username
+      );
 
       if (error) {
         setLoading(false);
@@ -37,28 +51,17 @@ const Signin = ({ auth }: any) => {
       // else successful
       console.log(result);
       setLoading(false);
-      setServerError({ email: "", password: "" });
+      setServerError({ email: "", password: "", username: "" });
     },
   });
-
-  const handleGoogle = async () => {
-    const { result, error } = await googleSignin();
-
-    if (error) {
-      console.log("error", error);
-      return;
-    }
-
-    return result;
-  };
   return (
     <>
       <Head>
-        <title>Sign in</title>
+        <title>Signup</title>
       </Head>
       <div className={`container ${styles.signin}`}>
-        <div className="row justify-content-center align-items-center mt-5 w-100">
-          <div className="col-lg-5 col-md-6 col-sm-6 m-auto">
+        <div className="row justify-content-center align-items-center m-auto h-100 w-100">
+          <div className="col-lg-5 col-md-6 col-sm-6">
             <div className="card shadow">
               <div
                 className="card-title text-center border-bottom"
@@ -76,15 +79,44 @@ const Signin = ({ auth }: any) => {
                 >
                   <i className="fas fa-arrow-left"></i>&nbsp; Home
                 </Link>
-                <h2 className="p-3">Login</h2>
+                <h2 className="p-3">Register</h2>
               </div>
               <div className="card-body">
-                <form onSubmit={formik.handleSubmit}>
+                <form
+                  onSubmit={formik.handleSubmit}
+                  autoComplete="none"
+                  autoCorrect="none"
+                >
+                  <div className="mb-3">
+                    <label htmlFor="username" className="form-label">
+                      Username
+                    </label>
+                    <input
+                      autoComplete="none"
+                      autoCorrect="none"
+                      type="text"
+                      className={`form-control ${
+                        formik.touched.username &&
+                        (formik.errors.username || serverErrors.username)
+                          ? "is-invalid"
+                          : ""
+                      }`}
+                      id="username"
+                      name="username"
+                      onChange={formik.handleChange}
+                      value={formik.values.username}
+                    />
+                    <div className="invalid-feedback">
+                      {formik.errors.username || serverErrors.username}
+                    </div>
+                  </div>
                   <div className="mb-3">
                     <label htmlFor="email" className="form-label">
                       Email Address
                     </label>
                     <input
+                      autoComplete="none"
+                      autoCorrect="none"
                       type="text"
                       className={`form-control ${
                         formik.touched.email &&
@@ -106,6 +138,8 @@ const Signin = ({ auth }: any) => {
                       Password
                     </label>
                     <input
+                      autoComplete="none"
+                      autoCorrect="none"
                       type="password"
                       className={`form-control ${
                         formik.touched.password &&
@@ -123,15 +157,27 @@ const Signin = ({ auth }: any) => {
                     </div>
                   </div>
                   <div className="mb-3">
-                    <input
-                      type="checkbox"
-                      className="form-check-input"
-                      id="remember"
-                    />
-                    &nbsp;
-                    <label htmlFor="remember" className="form-label">
-                      Remember Me
+                    <label htmlFor="confirmPassword" className="form-label">
+                      Confirm Password
                     </label>
+                    <input
+                      autoComplete="none"
+                      autoCorrect="none"
+                      type="password"
+                      className={`form-control ${
+                        formik.touched.confirmPassword &&
+                        formik.errors.confirmPassword
+                          ? "is-invalid"
+                          : ""
+                      }`}
+                      id="confirmPassword"
+                      name="confirmPassword"
+                      onChange={formik.handleChange}
+                      value={formik.values.confirmPassword}
+                    />
+                    <div className="invalid-feedback">
+                      {formik.errors.confirmPassword}
+                    </div>
                   </div>
                   <div className="d-grid">
                     <button
@@ -139,33 +185,14 @@ const Signin = ({ auth }: any) => {
                       className="btn text-light btn-primary"
                       disabled={loading}
                     >
-                      {loading ? "Signing in..." : "Login"}
+                      {loading ? "Signing up..." : "Sign up"}
                     </button>
-                  </div>
-                  <div className="d-flex align-items-center justify-content-end mt-2">
-                    <Link
-                      href="/forgot-password text-secondary"
-                      style={{ fontSize: 12 }}
-                    >
-                      Forgot Password
-                    </Link>
                   </div>
                 </form>
                 <hr />
-                <div className="d-grid mb-2">
-                  <button
-                    type="submit"
-                    className={`btn text-light ${styles["btn-google"]}`}
-                    onClick={() => handleGoogle()}
-                  >
-                    <i className="fab fa-google"></i>&nbsp;&nbsp; Signin with
-                    Google
-                  </button>
-                </div>
 
                 <div className="d-flex" style={{ fontSize: 12 }}>
-                  Not a member yet? &nbsp;{" "}
-                  <Link href="/signup">Become a member</Link>
+                  Already a member? &nbsp; <Link href="/signin">Sign in</Link>
                 </div>
               </div>
             </div>
@@ -176,4 +203,4 @@ const Signin = ({ auth }: any) => {
   );
 };
 
-export default withPublic(Signin);
+export default withPublic(Signup);

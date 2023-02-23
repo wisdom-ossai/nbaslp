@@ -3,14 +3,12 @@ import "@slp/styles/lib/animate/animate.min.css";
 import "@slp/styles/bootstrap.min.css";
 import "@slp/styles/globals.css";
 import type { AppProps } from "next/app";
-import TopNav from "@slp/components/TopNav";
-import Navbar from "@slp/components/Navbar";
-import Footer from "@slp/components/Footer";
 import Script from "next/script";
+import AuthContextProvider from "@slp/components/AuthContext/AuthContext";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <>
+    <AuthContextProvider>
       <Component {...pageProps} />
       <Script
         src="https://code.jquery.com/jquery-3.4.1.min.js"
@@ -27,6 +25,6 @@ export default function App({ Component, pageProps }: AppProps) {
       <Script src="/assets/scripts/owlcarousel/owl.carousel.min.js" />
 
       <Script src="/assets/scripts/main.js" />
-    </>
+    </AuthContextProvider>
   );
 }
