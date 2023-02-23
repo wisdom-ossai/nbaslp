@@ -57,7 +57,7 @@ const Signup = ({ auth }: any) => {
   return (
     <>
       <Head>
-        <title>Signup</title>
+        <title>NBASLP | Membership sign up</title>
       </Head>
       <div className={`container ${styles.signin}`}>
         <div className="row justify-content-center align-items-center m-auto h-100 w-100">

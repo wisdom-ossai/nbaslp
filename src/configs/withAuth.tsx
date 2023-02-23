@@ -24,7 +24,7 @@ export function withProtected(Component: any) {
     const router = useRouter();
 
     if (!auth.user) {
-      router.replace("/signin");
+      router.replace("/membership/signin");
 
       return <Spinner />;
     }

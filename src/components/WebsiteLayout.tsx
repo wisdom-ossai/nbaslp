@@ -1,3 +1,4 @@
+import Head from "next/head";
 import React, { ReactNode } from "react";
 import { useAuthContext } from "./AuthContext/AuthContext";
 import Footer from "./Footer";

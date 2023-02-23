@@ -54,7 +54,7 @@ const Signin = ({ auth }: any) => {
   return (
     <>
       <Head>
-        <title>Sign in</title>
+        <title>NBASLP | Membership sign in</title>
       </Head>
       <div className={`container ${styles.signin}`}>
         <div className="row justify-content-center align-items-center mt-5 w-100">

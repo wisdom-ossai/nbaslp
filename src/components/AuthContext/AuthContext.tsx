@@ -13,6 +13,7 @@ import { collection, getDocs, doc, getDoc, setDoc } from "firebase/firestore";
 import firebase_app, { db } from "@slp/configs/firebase";
 import Spinner from "../Spinner";
 import mapAuthCodeToMessage from "@slp/configs/mapAuthCodeToMessage";
+import Head from "next/head";
 
 interface IAuthContext {
   user: User | null;
@@ -110,11 +111,16 @@ const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   }
 
   return (
-    <AuthContext.Provider
-      value={{ user, signIn, signUp, googleSignin, logout }}
-    >
-      {loading ? <Spinner /> : children}
-    </AuthContext.Provider>
+    <>
+      <Head>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+      </Head>
+      <AuthContext.Provider
+        value={{ user, signIn, signUp, googleSignin, logout }}
+      >
+        {loading ? <Spinner /> : children}
+      </AuthContext.Provider>
+    </>
   );
 };
 
