@@ -2,7 +2,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import styles from "../styles/Signin.module.css";
+import styles from "../../styles/Signin.module.css";
 import Head from "next/head";
 import { withPublic } from "@slp/configs/withAuth";
 
@@ -165,7 +165,7 @@ const Signin = ({ auth }: any) => {
 
                 <div className="d-flex" style={{ fontSize: 12 }}>
                   Not a member yet? &nbsp;{" "}
-                  <Link href="/signup">Become a member</Link>
+                  <Link href="/membership/signup">Become a member</Link>
                 </div>
               </div>
             </div>

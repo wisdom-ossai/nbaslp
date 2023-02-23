@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import Script from "next/script";
 import React from "react";
 import SigninModal from "./SigninModal";
 
@@ -179,7 +178,7 @@ const Navbar = ({ user }: any) => {
             <i className="fa fa-search"></i>
           </button>
           <Link
-            href={user ? "/dashboard" : "/signin"}
+            href={user ? "/dashboard" : "/membership/signin"}
             // data-bs-toggle="modal"
             // data-bs-target="#login-modal"
             className="btn btn-primary py-2 px-4 ms-3"
@@ -220,20 +219,6 @@ const Navbar = ({ user }: any) => {
       </div>
 
       <SigninModal />
-
-      <Script
-        src="https://code.jquery.com/jquery-3.4.1.min.js"
-        crossOrigin="anonymous"
-      />
-      <Script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
-        crossOrigin="anonymous"
-      />
-      <Script src="/assets/scripts/wow/wow.min.js" />
-      <Script src="/assets/scripts/easing/easing.min.js" />
-      <Script src="/assets/scripts/waypoints/waypoints.min.js" />
-      <Script src="/assets/scripts/counterup/counterup.min.js" />
-      <Script src="/assets/scripts/owlcarousel/owl.carousel.min.js" />
     </div>
   );
 };

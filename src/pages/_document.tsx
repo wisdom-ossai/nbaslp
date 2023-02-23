@@ -1,4 +1,5 @@
 import { Html, Head, Main, NextScript } from "next/document";
+import Script from "next/script";
 
 export default function Document() {
   return (
@@ -38,6 +39,38 @@ export default function Document() {
         />
       </Head>
       <body>
+        <Script
+          strategy="beforeInteractive"
+          src="https://code.jquery.com/jquery-3.4.1.min.js"
+          crossOrigin="anonymous"
+        />
+        <Script
+          strategy="beforeInteractive"
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+          crossOrigin="anonymous"
+        />
+        <Script
+          strategy="beforeInteractive"
+          src="/assets/scripts/wow/wow.min.js"
+        />
+        <Script
+          strategy="beforeInteractive"
+          src="/assets/scripts/easing/easing.min.js"
+        />
+        <Script
+          strategy="beforeInteractive"
+          src="/assets/scripts/waypoints/waypoints.min.js"
+        />
+        <Script
+          strategy="beforeInteractive"
+          src="/assets/scripts/counterup/counterup.min.js"
+        />
+        <Script
+          strategy="beforeInteractive"
+          src="/assets/scripts/owlcarousel/owl.carousel.min.js"
+        />
+
+        <Script strategy="beforeInteractive" src="/assets/scripts/main.js" />
         <Main />
         <NextScript />
 
@@ -47,27 +80,6 @@ export default function Document() {
         >
           <i className="bi bi-arrow-up"></i>
         </a>
-
-        <script
-          async
-          src="https://code.jquery.com/jquery-3.4.1.min.js"
-          crossOrigin="anonymous"
-        ></script>
-        <script
-          async
-          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
-          crossOrigin="anonymous"
-        ></script>
-        <script async src="/assets/scripts/wow/wow.min.js"></script>
-        <script async src="/assets/scripts/easing/easing.min.js"></script>
-        <script async src="/assets/scripts/waypoints/waypoints.min.js"></script>
-        <script async src="/assets/scripts/counterup/counterup.min.js"></script>
-        <script
-          async
-          src="/assets/scripts/owlcarousel/owl.carousel.min.js"
-        ></script>
-
-        <script async src="/assets/scripts/main.js"></script>
       </body>
     </Html>
   );
